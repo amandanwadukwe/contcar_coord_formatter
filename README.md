@@ -1,6 +1,6 @@
 # data_formatter
 
-Run\n
+Run    
 ```python .\newCoordFormatter.py "coOrds220928.txt" "coOrds220928 copy.txt"```
 
-##done with Lancaster University
+## done with Lancaster University

@@ -1,18 +1,14 @@
 import csv  
-
+import sys
 
 #Make each line of in a coords txt file into an item  in an array
 lines = []
-
-with open('coOrds220928.txt') as coords:
+with open(sys.argv[1]) as coords:
     while True:
         line = coords.readline()
         if not line:
             break
         lines.append(line.strip())
-
-
-
 
 def filter_line(line_string, cond_num):
     arrayed_and_filtered = []
@@ -28,7 +24,6 @@ elements = []
 number_of_atoms = []
 el_and_atoms_list = []
 
-
 #Extract the number of atoms of each element
 number_of_atoms = filter_line(lines[6], 0)
 
@@ -39,11 +34,8 @@ for index in range(len(number_of_atoms)):
     el_and_atoms_list.append(elements[index])
     el_and_atoms_list.append(int(number_of_atoms[index]))
 
-
-
 item = iter(el_and_atoms_list)
 el_and_atoms_dict = dict(zip(item, item))
-
 
 def calculate_position_of_each_atom(el, start_point, end_point):
     positions = []
@@ -58,9 +50,6 @@ def calculate_position_of_each_atom(el, start_point, end_point):
     
     return positions
                 
-    # writer = csv.writer(result, delimiter=",")
-
-
 with open('newCoordFormat.xyz', 'w', encoding='UTF8') as newCoordFormat:
     writer = csv.writer(newCoordFormat, delimiter=" ")
 
@@ -80,6 +69,3 @@ with open('newCoordFormat.xyz', 'w', encoding='UTF8') as newCoordFormat:
 
     for data in calculate_position_of_each_atom("Zn", 153, 154):
         writer.writerow(data)
-
-    
-print(elements)
